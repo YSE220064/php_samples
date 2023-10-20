@@ -36,11 +36,14 @@ function selected($value, $checkValue)
     <div class="container">
         <h1>入力画面</h1>
 
+        <?php if (isset($errors)): ?>
         <ul>
             <?php foreach ($errors as $error) : ?>
                 <li class="text-danger"><?= $error ?></li>
             <?php endforeach ?>
         </ul>
+        <?php endif ?>
+
         <form action="confirm.php" method="post">
             <div class="form-group">
                 <label class="form-label" for="">氏名</label>
@@ -58,17 +61,17 @@ function selected($value, $checkValue)
                 <label class="form-label" for="">生年月日</label>
                 <select class="form-control" name="year">
                     <?php foreach (range(1900, date('Y')) as $year) : ?>
-                        <option value="<?= $year ?>" <?= selected($year, $regist['year']) ?>><?= $year ?></option>
+                        <option value="<?= $year ?>" <?= selected($year, @$regist['year']) ?>><?= $year ?></option>
                     <?php endforeach ?>
                 </select>
                 <select class="form-control" name="month">
                     <?php foreach (range(1, 12) as $month) : ?>
-                        <option value="<?= $month ?>" <?= selected($month, $regist['month']) ?>><?= $month ?></option>
+                        <option value="<?= $month ?>" <?= selected($month, @$regist['month']) ?>><?= $month ?></option>
                     <?php endforeach ?>
                 </select>
                 <select class="form-control" name="day">
                     <?php foreach (range(1, 31) as $day) : ?>
-                        <option value="<?= $day ?>" <?= selected($day, $regist['day']) ?>><?= $day ?></option>
+                        <option value="<?= $day ?>" <?= selected($day, @$regist['day']) ?>><?= $day ?></option>
                     <?php endforeach ?>
                 </select>
             </div>
